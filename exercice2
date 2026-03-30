@@ -2,19 +2,18 @@ class Complexe {
     private double reelle;
     private double imaginaire;
 
-    // Constructeur par défaut
+  
     public Complexe() {
         this.reelle = 0;
         this.imaginaire = 0;
     }
 
-    // Constructeur avec paramètres
     public Complexe(double r, double i) {
         this.reelle = r;
         this.imaginaire = i;
     }
 
-    // Getters / Setters
+   
     public double getReelle() {
         return reelle;
     }
@@ -31,7 +30,7 @@ class Complexe {
         this.imaginaire = imaginaire;
     }
 
-    // Addition
+
     public Complexe plus(Complexe c) {
         return new Complexe(
             this.reelle + c.reelle,
@@ -39,7 +38,7 @@ class Complexe {
         );
     }
 
-    // Soustraction
+   
     public Complexe moins(Complexe c) {
         return new Complexe(
             this.reelle - c.reelle,
@@ -47,7 +46,24 @@ class Complexe {
         );
     }
 
-    // Affichage
+public class TestComplexe {
+    public static void main(String[] args) {
+
+        Complexe c1 = new Complexe(2, 3);
+        Complexe c2 = new Complexe(1, 4);
+
+        Complexe somme = c1.plus(c2);
+        Complexe diff = c1.moins(c2);
+
+        System.out.print("Somme : ");
+        somme.afficher();
+
+        System.out.print("Différence : ");
+        diff.afficher();
+    }
+}
+
+ 
     public void afficher() {
         System.out.println(reelle + " + " + imaginaire + "i");
     }
