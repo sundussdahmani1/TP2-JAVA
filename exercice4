@@ -1,0 +1,94 @@
+class Article {
+    private String reference;
+    private String designation;
+    private double prixHT;
+    private static double tauxTVA = 20;
+
+    public Article() {
+        this.reference = "";
+        this.designation = "";
+        this.prixHT = 0;
+    }
+
+    public Article(String ref, String des, double prixHT) {
+        this.reference = ref;
+        this.designation = des;
+        this.prixHT = prixHT;
+    }
+
+    public Article(String ref, String des) {
+        this.reference = ref;
+        this.designation = des;
+        this.prixHT = 0;
+    }
+
+    public Article(Article a) {
+        this.reference = a.reference;
+        this.designation = a.designation;
+        this.prixHT = a.prixHT;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    public double getPrixHT() {
+        return prixHT;
+    }
+
+    public void setPrixHT(double prixHT) {
+        this.prixHT = prixHT;
+    }
+
+    public static double getTauxTVA() {
+        return tauxTVA;
+    }
+
+    public static void setTauxTVA(double tva) {
+        tauxTVA = tva;
+    }
+
+    public double calculerPrixTTC() {
+        return prixHT + (prixHT * tauxTVA / 100);
+    }
+
+    public void afficherArticle() {
+        System.out.println("Référence : " + reference);
+        System.out.println("Désignation : " + designation);
+        System.out.println("Prix HT : " + prixHT);
+        System.out.println("TVA : " + tauxTVA + "%");
+        System.out.println("Prix TTC : " + calculerPrixTTC());
+    }
+}
+
+public class TestArticle {
+    public static void main(String[] args) {
+        Article.setTauxTVA(20);
+
+        Article a1 = new Article();
+        a1.setReference("A1");
+        a1.setDesignation("Clavier");
+        a1.setPrixHT(100);
+
+        Article a2 = new Article("A2", "Souris", 50);
+        Article a3 = new Article("A3", "Ecran");
+        Article a4 = new Article(a2);
+
+        a1.afficherArticle();
+        a2.afficherArticle();
+        a3.afficherArticle();
+        a4.afficherArticle();
+    }
+}
