@@ -1,0 +1,138 @@
+class Client {
+    private String cin;
+    private String nom;
+    private String prenom;
+    private String tel;
+
+    public Client(String cin, String nom, String prenom, String tel) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel = tel;
+    }
+
+    public Client(String cin, String nom, String prenom) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel = "";
+    }
+
+    public String getCin() {
+        return cin;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public void afficher() {
+        System.out.println("CIN : " + cin);
+        System.out.println("Nom : " + nom);
+        System.out.println("Prénom : " + prenom);
+        System.out.println("Tél : " + tel);
+    }
+}
+
+class Compte {
+    private static int compteur = 0;
+    private int code;
+    private double solde;
+    private Client proprietaire;
+
+    public Compte(Client proprietaire) {
+        compteur++;
+        this.code = compteur;
+        this.solde = 0;
+        this.proprietaire = proprietaire;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public double getSolde() {
+        return solde;
+    }
+
+    public Client getProprietaire() {
+        return proprietaire;
+    }
+
+    public void crediter(double montant) {
+        solde += montant;
+    }
+
+    public void crediter(double montant, Compte c) {
+        this.crediter(montant);
+        c.debiter(montant);
+    }
+
+    public void debiter(double montant) {
+        if (montant <= solde) {
+            solde -= montant;
+        }
+    }
+
+    public void debiter(double montant, Compte c) {
+        if (montant <= solde) {
+            this.debiter(montant);
+            c.crediter(montant);
+        }
+    }
+
+    public void afficherCompte() {
+        System.out.println("Code : " + code);
+        System.out.println("Solde : " + solde);
+        proprietaire.afficher();
+    }
+
+    public static void afficherNombreComptes() {
+        System.out.println("Nombre de comptes : " + compteur);
+    }
+}
+
+public class TestCompte {
+    public static void main(String[] args) {
+        Client c1 = new Client("C1", "Ali", "Ahmed", "0600000000");
+        Client c2 = new Client("C2", "Sara", "Yasmine");
+
+        Compte cp1 = new Compte(c1);
+        Compte cp2 = new Compte(c2);
+
+        cp1.crediter(1000);
+        cp2.crediter(500);
+
+        cp1.debiter(200);
+        cp1.crediter(100, cp2);
+
+        cp1.afficherCompte();
+        cp2.afficherCompte();
+
+        Compte.afficherNombreComptes();
+    }
+}
