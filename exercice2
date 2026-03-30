@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Ex2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        double r;
+
+        System.out.print("Entrer le rayon : ");
+        r = sc.nextDouble();
+
+        double surface = Math.PI * r * r;
+        double perimetre = 2 * Math.PI * r;
+
+        System.out.println("Surface = " + surface);
+        System.out.println("Périmètre = " + perimetre);
+    }
+}
