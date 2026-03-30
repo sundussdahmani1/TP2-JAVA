@@ -1,18 +1,54 @@
-import java.util.Scanner;
+class Complexe {
+    private double reelle;
+    private double imaginaire;
 
-public class Ex2 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    // Constructeur par défaut
+    public Complexe() {
+        this.reelle = 0;
+        this.imaginaire = 0;
+    }
 
-        double r;
+    // Constructeur avec paramètres
+    public Complexe(double r, double i) {
+        this.reelle = r;
+        this.imaginaire = i;
+    }
 
-        System.out.print("Entrer le rayon : ");
-        r = sc.nextDouble();
+    // Getters / Setters
+    public double getReelle() {
+        return reelle;
+    }
 
-        double surface = Math.PI * r * r;
-        double perimetre = 2 * Math.PI * r;
+    public void setReelle(double reelle) {
+        this.reelle = reelle;
+    }
 
-        System.out.println("Surface = " + surface);
-        System.out.println("Périmètre = " + perimetre);
+    public double getImaginaire() {
+        return imaginaire;
+    }
+
+    public void setImaginaire(double imaginaire) {
+        this.imaginaire = imaginaire;
+    }
+
+    // Addition
+    public Complexe plus(Complexe c) {
+        return new Complexe(
+            this.reelle + c.reelle,
+            this.imaginaire + c.imaginaire
+        );
+    }
+
+    // Soustraction
+    public Complexe moins(Complexe c) {
+        return new Complexe(
+            this.reelle - c.reelle,
+            this.imaginaire - c.imaginaire
+        );
+    }
+
+    // Affichage
+    public void afficher() {
+        System.out.println(reelle + " + " + imaginaire + "i");
     }
 }
