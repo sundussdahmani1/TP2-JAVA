@@ -1,1 +1,42 @@
+public class Rectangle {
+    private int longuer;
+    private int largeur;
 
+    public Rectangle(int longueur, int largeur) {
+        this.longueur = longueur;
+        this.largeur = largeur;
+    }
+
+    public int getLonguer() {
+        return longuer;
+    }
+    public void setLonguer(int longuer){
+        this.longuer= longuer;
+    }
+
+    public int getLargeur() {
+        return largeur;
+    }
+    public void setLargeur(int largeur){
+        this.largeur= largeur;
+    }
+    public int perimetre(int longuer , int largeur){
+        return 2*(largeur+longeur);
+    }
+    public int perimetre(int longuer , int largeur){
+        return  largeur*longeur;
+    }
+    public boolean EstCarre(int longuer , int largeur){
+        reurn longuer == largeur;
+
+    }
+    public void AfficherRectangle(){
+        system.out.print("
+                "Longueur : " + longueur +
+                        " - Largeur : " + largeur +
+                        " - Perimetre : " + perimetre() +
+                        " - Aire : " + aire() +
+                        " - " + (estCarre() ? "Il s’agit d’un carré" : "Il ne s’agit pas d’un carré");
+        }
+
+}
