@@ -1,1 +1,85 @@
-hggfjhf
+class DateFormat {
+    private int jour;
+    private int mois;
+    private int annee;
+
+    
+    public DateFormat(int j, int m, int a) {
+        this.jour = j;
+        this.mois = m;
+        this.annee = a;
+    }
+
+    
+    public int getAnnee() {
+        return annee;
+    }
+}
+class Employe {
+    private String matricule;
+    private String nom;
+    private String prenom;
+    private DateFormat dateNaissance;
+    private DateFormat dateEmbauche;
+    private double salaire;
+
+    
+    public Employe(String matricule, String nom, String prenom,
+                   DateFormat dn, DateFormat de, double salaire) {
+        this.matricule = matricule;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dn;
+        this.dateEmbauche = de;
+        this.salaire = salaire;
+    }
+
+    
+    public int age() {
+        int anneeActuelle = 2026; // tu peux aussi utiliser Calendar
+        return anneeActuelle - dateNaissance.getAnnee();
+    }
+
+  
+    public int anciennete() {
+        int anneeActuelle = 2026;
+        return anneeActuelle - dateEmbauche.getAnnee();
+    }
+    public void augmentationDuSalaire() {
+        int anc = anciennete();
+
+        if (anc < 5) {
+            salaire += salaire * 0.02;
+        } else if (anc < 10) {
+            salaire += salaire * 0.05;
+        } else {
+            salaire += salaire * 0.10;
+        }
+    }
+
+    
+    public void afficherEmploye() {
+        System.out.println("Matricule : " + matricule);
+        System.out.println("Nom complet : " + nom + " " + prenom);
+        System.out.println("Age : " + age());
+        System.out.println("Ancienneté : " + anciennete());
+        System.out.println("Salaire : " + salaire);
+    }
+}
+public class TestEmploye {
+    public static void main(String[] args) {
+
+        DateFormat dn = new DateFormat(10, 5, 2000);
+        DateFormat de = new DateFormat(1, 1, 2020);
+
+        Employe e = new Employe("E01", "Ali", "Ahmed", dn, de, 5000);
+
+        System.out.println("Avant augmentation :");
+        e.afficherEmploye();
+
+        e.augmentationDuSalaire();
+
+        System.out.println("\nAprès augmentation :");
+        e.afficherEmploye();
+    }
+}
